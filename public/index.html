@@ -1,0 +1,68 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Mini-WhatsApp Demo</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <aside class="sidebar">
+      <div class="me">
+        <div id="meName">Not logged</div>
+        <button id="btnLogout" style="display:none;">Logout</button>
+      </div>
+      <div class="search">
+        <input id="searchContacts" placeholder="Search contacts or username..." />
+      </div>
+      <ul id="contacts"></ul>
+    </aside>
+
+    <main class="chat-area">
+      <header class="chat-header">
+        <div id="chatWith">Select a chat</div>
+      </header>
+
+      <section id="messages" class="messages"></section>
+
+      <footer class="composer">
+        <input id="messageInput" placeholder="Type a message..." />
+        <button id="sendBtn">Send</button>
+      </footer>
+    </main>
+  </div>
+
+  <!-- Login/Register overlay -->
+  <div id="overlay" class="overlay">
+    <div class="auth-card">
+      <h2 id="authTitle">Login</h2>
+      <div id="authForms">
+        <div id="loginForm">
+          <input id="loginUsername" placeholder="username" />
+          <input id="loginPassword" type="password" placeholder="password" />
+          <button id="loginBtn">Login</button>
+        </div>
+
+        <div id="registerForm" style="display:none;">
+          <input id="regUsername" placeholder="username" />
+          <input id="regDisplay" placeholder="display name" />
+          <input id="regPassword" type="password" placeholder="password" />
+          <button id="registerBtn">Register</button>
+        </div>
+      </div>
+
+      <div class="auth-toggle">
+        <span id="toggleToRegister">No account? Register</span> |
+        <span id="toggleToLogin" style="display:none;">Have an account? Login</span>
+      </div>
+      <div style="margin-top:.5rem; font-size:.9rem; color:#666;">
+        Demo note: usernames must be unique. Share this server URL with friends to register.
+      </div>
+    </div>
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>

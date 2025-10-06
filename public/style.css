@@ -1,0 +1,420 @@
+/* === Modern Chat App Styling === */
+:root {
+  --bg: #f3f5f9;
+  --sidebar: #ffffff;
+  --sidebar-border: #e2e8f0;
+  --primary: rgba(175, 150, 35, 0.938);
+  --primary-light: #246424;
+  --accent: #16a34a;
+  --me: #dbeafe;
+  --other: #fff;
+  --muted: #64748b;
+  --text: #1e293b;
+  --radius: 12px;
+  --shadow: 0 6px 20px rgba(0,0,0,0.08);
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+/* === Layout === */
+#app {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* === Sidebar === */
+.sidebar {
+  width: 320px;
+  background: var(--sidebar);
+  border-right: 1px solid var(--sidebar-border);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow);
+  z-index: 2;
+}
+
+.me {
+  padding: 16px;
+  border-bottom: 1px solid var(--sidebar-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 600;
+  color: var(--primary);
+  font-size: 1.1rem;
+}
+
+.search {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--sidebar-border);
+}
+
+.search input {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: var(--radius);
+  border: 1px solid var(--sidebar-border);
+  background: #f9fafb;
+  transition: 0.3s;
+}
+
+.search input:focus {
+  border-color: var(--primary);
+  outline: none;
+  background: #fff;
+}
+
+/* === Contact List === */
+#contacts {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  overflow-y: auto;
+}
+
+#contacts li {
+  padding: 14px 18px;
+  border-bottom: 1px solid #f1f5f9;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: background 0.2s;
+}
+
+#contacts li:hover {
+  background: #f8fafc;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-light), var(--accent));
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+.name {
+  font-weight: 600;
+}
+
+.sub {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* === Chat Area === */
+.chat-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg);
+}
+
+.chat-header {
+  padding: 14px 20px;
+  border-bottom: 1px solid #e2e8f0;
+  background: #fff;
+  font-weight: 600;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--primary);
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  z-index: 1;
+}
+
+/* === Messages === */
+.messages {
+  flex: 1;
+  padding: 16px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: var(--bg);
+}
+
+.msg {
+  max-width: 70%;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  margin-bottom: 4px;
+  line-height: 1.4;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  font-size: 0.95rem;
+  position: relative;
+  animation: pop 0.2s ease;
+}
+
+.msg.me {
+  align-self: flex-end;
+  background: var(--me);
+  border-top-right-radius: 4px;
+}
+
+.msg.other {
+  align-self: flex-start;
+  background: var(--other);
+  border-top-left-radius: 4px;
+  border: 1px solid #e2e8f0;
+}
+
+.msg .meta {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 4px;
+  text-align: right;
+}
+
+/* === Composer === */
+.composer {
+  display: flex;
+  padding: 12px 14px;
+  border-top: 1px solid #e2e8f0;
+  background: #fff;
+  align-items: center;
+  gap: 10px;
+}
+
+.composer input {
+  flex: 1;
+  padding: 10px 14px;
+  border-radius: var(--radius);
+  border: 1px solid #cbd5e1;
+  background: #f9fafb;
+  transition: 0.3s;
+}
+
+.composer input:focus {
+  border-color: var(--primary);
+  outline: none;
+  background: #fff;
+}
+
+.composer button {
+  background: var(--primary);
+  border: none;
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+.composer button:hover {
+  background: var(--primary-light);
+}
+
+/* === Auth Overlay === */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15,23,42,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(6px);
+}
+
+.auth-card {
+  width: 360px;
+  background: #fff;
+  padding: 24px 28px;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  text-align: center;
+  animation: pop 0.3s ease;
+}
+
+.auth-card h2 {
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 10px;
+  border-radius: var(--radius);
+  border: 1px solid #cbd5e1;
+  background: #f9fafb;
+}
+
+.auth-card button {
+  width: 100%;
+  padding: 10px;
+  background: var(--primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.auth-card button:hover {
+  background: var(--primary-light);
+}
+
+.auth-toggle {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.auth-toggle:hover {
+  color: var(--primary);
+}
+
+/* === Animations === */
+@keyframes pop {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* === Scrollbar Styling === */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+/* === Logout Button Styling === */
+#btnLogout {
+  background: var(--primary);
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+}
+
+#btnLogout:hover {
+  background: var(--primary-light);
+  transform: translateY(-2px);
+}
+
+#btnLogout:active {
+  transform: scale(0.96);
+}
+
+/* === 🌙 Dark Mode Support === */
+body.dark {
+  --bg: #0f1930;
+  --sidebar: #0d1727;
+  --sidebar-border: #3b82f6;
+  --primary: #3b82f6;
+  --primary-light: #60a5fa;
+  --accent: #22c55e;
+  --me: #1e3a8a;
+  --other: #1e293b;
+  --muted: #94a3b8;
+  --text: #f1f5f9;
+}
+
+body.dark .sidebar,
+body.dark .chat-area,
+body.dark .auth-card,
+body.dark .composer,
+body.dark .chat-header {
+  background: var(--sidebar);
+  color: var(--text);
+}
+
+body.dark input,
+body.dark textarea {
+  background: #0f172a;
+  border-color: #334155;
+  color: var(--text);
+}
+
+body.dark .msg.me {
+  background: #1e3a8a;
+}
+
+body.dark .msg.other {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+body.dark .composer button {
+  background: var(--primary);
+}
+
+body.dark .auth-card {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+}
+
+body.dark .overlay {
+  background: rgba(0,0,0,0.6);
+}
+/* Smooth color transition for dark mode */
+body, .sidebar, .chat-area, .composer, .msg, .auth-card {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+body.dark #contacts li:hover {
+  background: #334155;
+  transition: background 0.2s ease;
+}
+body.dark input,
+body.dark .search input,
+body.dark .composer input {
+  background: #1e293b;
+  border-color: #334155;
+  color: var(--text);
+}
+
+body.dark input:focus,
+body.dark .search input:focus,
+body.dark .composer input:focus {
+  background: #1e293b;
+  border-color: var(--primary);
+  color: var(--text);
+  outline: none;
+}
+body.dark .msg.me {
+  color: #eaecf0; /* soft light blue */
+}
+
+body.dark .msg.other {
+  color: #f1f5f9; /* off-white */
+}
+/* Logout button in dark mode */
+body.dark #logout {
+  background: #3b82f6;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+}
+
+body.dark #logout:hover {
+  background: #60a5fa;
+}
